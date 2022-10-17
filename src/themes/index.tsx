@@ -3,7 +3,7 @@ export default {
   COLORS: {
     RED_700: '#BF3B44',
     RED_300: '#F3BABD',
-    RED_100: '##F4E6E7',
+    RED_100: '#F4E6E7',
   
     GREEN_700: '#639339',
     GREEN_300: '#CBE4B4',
