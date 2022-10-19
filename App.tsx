@@ -16,6 +16,7 @@ export default function App() {
       <StatusBar 
         barStyle='dark-content'
         backgroundColor="transparent"
+        translucent
       />
       {fontsLoaded ? <Routes /> : <Loading /> } 
     </ThemeProvider>

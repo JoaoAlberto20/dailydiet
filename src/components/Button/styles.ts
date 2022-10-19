@@ -7,27 +7,30 @@ type Props = {
   type: ButtonTypeStyleProps
 }
 
-
 export const Container = styled(TouchableOpacity)<Props>`
-  width: 100%;
-  height: 50px;
+  flex-basis: 0;
+  min-height: 50px;
+  max-height: 50px;
   border-radius: 6px;
   align-items: center;
   justify-content: center;
-  
-  ${({ theme, type }) =>   css`
+  flex-direction: row;
+
+  ${({ theme, type }) => css`
     background-color: ${type === 'SECONDARY' ? theme.COLORS.GRAY_100 : theme.COLORS.GRAY_700};
-    border: ${ type === 'SECONDARY' ? `1px solid ${theme.COLORS.GRAY_700}` : 'none' };
+    border: ${type === 'SECONDARY' ? `1px solid ${theme.COLORS.GRAY_700}` : 'none'};
   `}
 `;
 
 
 export const TextContent = styled.Text<Props>`
-  margin-left: 14px;
-  
-  ${({ theme, type }) =>  css`
-    color: ${type === 'SECONDARY' ? theme.COLORS.GRAY_700 : theme.COLORS.GRAY_100 };
-    font-size: ${theme.FONT_SIZE.SM }px;
-    font-family: ${theme.FONT_FAMILY.BOLD};
+  color: ${({ theme }) => theme.COLORS.GRAY_100};
+  font-family: ${({ theme }) => theme.FONT_FAMILY.BOLD};
+  font-size: ${({ theme }) => theme.FONT_SIZE.SM}px;
+  margin-left: 14px; 
+
+  ${({ theme, type }) => type === 'SECONDARY' && css`
+    color: ${theme.COLORS.GRAY_700};
   `}
 `
+

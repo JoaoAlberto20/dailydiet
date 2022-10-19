@@ -1,13 +1,21 @@
+import { useState } from 'react';
+import { FlatList } from 'react-native';
+import { useTheme } from 'styled-components/native';
+
+import { Plus } from 'phosphor-react-native';
+
 import { Button } from '@components/Button';
 import { CardStatistics } from '@components/CardStatistics';
-import { Header } from '@components/Header';
 import { ListEmpty } from '@components/ListEmpty';
 import { MealsCard } from '@components/MealsCard';
-import React, { useState } from 'react';
-import { FlatList } from 'react-native';
+
+import { useNavigation } from '@react-navigation/native';
 import {
-  Container, MealsContainer, TextMeals
+  Container, Header, Logo, MealsContainer, Profile, TextMeals
 } from './styles';
+
+import logoImg from '@assets/logo.png';
+import profileImg from '@assets/profile.png';
 
 
 const data = [
@@ -89,18 +97,39 @@ type MealsData = {
 
 export function Home() {
   const [meals, setMeals] = useState<MealsData[]>([])
+  const {COLORS} = useTheme();
+  
+  const navigation = useNavigation();
+
+  const handleOpenScreenRegisterDiet = () => navigation.navigate('new');
+
+  const handleOpenScreenStaticsDiet = () => navigation.navigate('statics')
+
   return (
     <Container>
-      <Header />
-
+      <Header>
+        <Logo source={logoImg} />
+        <Profile source={profileImg} />
+      </Header>
       <CardStatistics
         type='PRIMARY'
         percent='90,86%'
         subTitle='das refeições dentro da dieta'
+        onPress={handleOpenScreenStaticsDiet}
       />
 
       <TextMeals>Refeições</TextMeals>
-      <Button type="PRIMARY" title="Nova refeição" />
+      <Button 
+        type="PRIMARY" 
+        title="Nova refeição" 
+        icon={
+          <Plus 
+            size={24} 
+            color={COLORS.WHITE}
+          />
+        }
+        onPress={handleOpenScreenRegisterDiet} 
+      />
       <MealsContainer>
         <FlatList
           data={meals}

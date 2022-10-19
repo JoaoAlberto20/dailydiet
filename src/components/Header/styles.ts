@@ -1,21 +1,31 @@
-import styled from 'styled-components/native';
+import { View } from 'react-native';
+import styled, { css } from 'styled-components/native';
 
-export const Container = styled.View`
-  width: 100%;
+export type HeaderStylesProps = 'PRIMARY' | 'SECONDARY';
+
+type Props = {
+  type: HeaderStylesProps | null
+}
+
+export const Container = styled(View)<Props>`
   flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 24px;
+
+  background-color: ${({ theme }) => theme.COLORS.GRAY_300}
+
+
+  ${({ theme, type }) => type && css`
+    background-color: ${ type === 'PRIMARY' ? theme.COLORS.GREEN_100 : theme.COLORS.RED_100 };
+  `}
 `;
 
-export const Logo = styled.Image`
-  width: 82px;
-  height: 37px;
+export const TitleScreen = styled.Text`
+  ${({ theme }) => css`
+    color: ${theme.COLORS.GRAY_700};
+    font-size: ${theme.FONT_SIZE.LG}px;
+    font-family: ${theme.FONT_FAMILY.BOLD};
+  `}
 `
 
-export const Profile = styled.Image`
-  width: 40px;
-  height: 40px;
-  border-radius: 9999px;
-  border: 2px solid ${({ theme } ) => theme.COLORS.GRAY_600};
-  object-fit: contain;
-`

@@ -12,10 +12,10 @@ export const Container = styled(TouchableOpacity)<Props>`
   min-height: 102px;
   max-height: 102px;
   width: 100%;
-  margin-top: 36px;
   padding: 20px 16px;
   border-radius: 8px;
   align-items: center;
+  
 
   ${({ theme, type }) => css`
     background-color: ${type === 'PRIMARY' ? theme.COLORS.GREEN_100 : theme.COLORS.RED_100};

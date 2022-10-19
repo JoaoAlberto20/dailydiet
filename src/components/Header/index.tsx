@@ -1,16 +1,27 @@
+import { ButtonGoBack } from '@components/ButtonGoBack';
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import {
-  Container, Logo, Profile
+  Container, HeaderStylesProps, TitleScreen
 } from './styles';
 
-import logoImg from '@assets/logo.png';
-import profileImg from '@assets/profile.png';
 
-export function Header() {
+type HeaderProps = {
+  type?: HeaderStylesProps | null
+  title: string
+}
+
+export function Header({ type = null, title }: HeaderProps) {
+  const navigation = useNavigation()
+
+  const handleGoBackScreenHome = () => navigation.navigate('home')
+
   return (
-    <Container>
-      <Logo  source={logoImg} />
-      <Profile source={profileImg}/>
+    <Container type={type}>
+      <ButtonGoBack onPress={handleGoBackScreenHome} />
+      <TitleScreen>
+        {title}
+      </TitleScreen>
     </Container>
   );
 }
